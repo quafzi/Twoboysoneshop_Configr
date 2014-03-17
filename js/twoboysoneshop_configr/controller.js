@@ -59,17 +59,6 @@ configrController.prototype = {
             event.preventDefault();
         });
 
-        $('applyFilter').observe('click', function() {
-            $$('.store-select').each(function(item) {
-                var store = item.readAttribute('rel');
-                if ($F(item) !== null) {
-                    $$('.store.store-' + store).invoke('show');
-                } else {
-                    $$('.store.store-' + store).invoke('hide');
-                }
-            });
-        });
-
         $('select-all').observe('click', function() {
             $$('.store-select').each(function(item) {
                 item.checked = 1;

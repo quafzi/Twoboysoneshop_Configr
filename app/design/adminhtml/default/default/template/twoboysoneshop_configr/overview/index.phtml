@@ -9,7 +9,7 @@
 
 <div>
     <strong><?php echo $this->helper('configr')->__('Choose the Store Views you want to compare') ?></strong>
-    <form action="" method="POST">
+    <form action="<?php echo $this->getUrl('configr/overview/index'); ?>">
         <div class="grid">
             <table style="width:400px;">
                 <tr class="headings">
@@ -23,7 +23,7 @@
                     <td class="">
                         <?php foreach ($website['stores'] as $storeId => $store): ?>
                             <?php if ($storeId == 0) continue; ?>
-                            <input class="store-select" id="input-store-<?php echo $storeId ?>" rel="<?php echo $storeId ?>" type="checkbox" checked="checked">
+                            <input class="store-select" value="<?php echo $store['code']; ?>" name="stores[]" id="input-store-<?php echo $storeId ?>" rel="<?php echo $storeId ?>" type="checkbox"<?php if (array_key_exists($storeId, $this->getComparedStores())): ?> checked="checked"<?php endif; ?>>
                             <label for="input-store-<?php echo $storeId ?>"> <?php echo $store['name'] ?></label>
                             <br/>
                         <?php endforeach; ?>
@@ -32,8 +32,8 @@
                 </tr>
             </table>
         </div>
+        <button id="applyFilter" class="scalable" type="submit"><?php echo $this->helper('configr')->__('Compare selected Store Views') ?></button>
     </form>
-    <button id="applyFilter" class="scalable"><?php echo $this->helper('configr')->__('Compare selected Store Views') ?></button>
     <a href="#" id="select-all"><?php echo $this->helper('adminhtml')->__('Select All') ?></a> /
     <a href="#" id="select-none"><?php echo $this->helper('adminhtml')->__('Unselect All') ?></a>
 
@@ -64,7 +64,7 @@
                 </tr>
                 <tr class="headings">
                     <th></th>
-                <?php foreach ($this->getStores() as $storeId => $store): ?>
+                <?php foreach ($this->getComparedStores() as $storeId => $store): ?>
                     <th class="store store-<?php echo $storeId ?>"><?php echo $store['name'] ?></th>
                 <?php endforeach; ?>
                     <th></th>
@@ -78,7 +78,7 @@
                             <?php echo $this->__($field['label']); ?><br />
                             <small><?php echo $field['config_key'] ?></small>
                         </th>
-                    <?php foreach ($this->getStores() as $storeId => $store): ?>
+                    <?php foreach ($this->getComparedStores() as $storeId => $store): ?>
                         <?php if (isset($field['stores']) && array_key_exists($storeId, $field['stores'])): ?>
                             <?php $_defaultValue = $field['stores'][0] ?>
                             <?php $_websiteValue = $field['websites'][$store['website_id']] ?>
