@@ -1,5 +1,5 @@
 <?php
-class Twoboysoneshop_Configr_OverviewController extends Mage_Adminhtml_Controller_Action
+class Twoboysoneshop_Configr_Configr_OverviewController extends Mage_Adminhtml_Controller_Action
 {
     protected function _initAction()
     {
