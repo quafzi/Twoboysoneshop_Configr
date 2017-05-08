@@ -51,6 +51,7 @@ class Twoboysoneshop_Configr_Block_History_Grid extends Mage_Adminhtml_Block_Wid
             'header'    => Mage::helper('configr')->__('Old Value'),
             'index'     => 'old_value',
             'renderer'  => 'adminhtml/widget_grid_column_renderer_longtext',
+            'escape'    => true,
             'truncate'  => 50,
             'sortable'  => false,
         ));
@@ -59,6 +60,7 @@ class Twoboysoneshop_Configr_Block_History_Grid extends Mage_Adminhtml_Block_Wid
             'header'    => Mage::helper('configr')->__('New Value'),
             'index'     => 'value',
             'renderer'  => 'adminhtml/widget_grid_column_renderer_longtext',
+            'escape'    => true,
             'truncate'  => 50,
             'sortable'  => false,
         ));
